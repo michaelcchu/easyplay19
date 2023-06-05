@@ -134,7 +134,9 @@ optgroup.label = "tobis-notenarchiv-midi";
 // Retrieve text file
 //let url = "https://raw.githubusercontent.com/michaelcchu/"
 //  + "tobis-notenarchiv-midi/main/dir.txt"
-let url = "/dir.txt";
+
+let url = "https://raw.githubusercontent.com/michaelcchu/"
+  + "easyplay19/main/dir.txt";
 fetch(url)
 .then( response => response.text())
 .then( data => {
