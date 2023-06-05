@@ -164,7 +164,10 @@ function loadMusic() {
 
       //url = "/midi/" + option.text;
 
-      url = "https://michaelcchu.github.io/easyplay19/midi/" + option.text;
+      //url = "https://michaelcchu.github.io/easyplay19/midi/" + option.text;
+
+      url = window.location.href + "midi/" + option.text;
+
       //url = "https://github.com/michaelcchu/"
       //  + "easyplay19/raw/main/midi/"
       //  + option.text
