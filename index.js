@@ -132,12 +132,7 @@ let optgroup = document.createElement("optgroup");
 optgroup.label = "tobis-notenarchiv-midi";
 
 // Retrieve text file
-//let url = "https://raw.githubusercontent.com/michaelcchu/"
-//  + "tobis-notenarchiv-midi/main/dir.txt"
-
-let url = "https://raw.githubusercontent.com/michaelcchu/"
-  + "easyplay19/main/dir.txt";
-fetch(url)
+fetch("https://michaelcchu.github.io/easyplay19/dir.txt")
 .then( response => response.text())
 .then( data => {
   const lines = data.split("\n");
@@ -155,25 +150,7 @@ fetch(url)
 
 function loadMusic() {
   const option = library.options[library.selectedIndex];
-  let optgroup = option.parentElement.label;
-
-  if (optgroup === "tobis-notenarchiv-midi") {
-      //url = "https://proxy.cors.sh/"
-      //  + "https://github.com/michaelcchu/"
-      //  + "tobis-notenarchiv-midi/raw/main/midi/" + option.text
-
-      //url = "/midi/" + option.text;
-
-      //url = "https://michaelcchu.github.io/easyplay19/midi/" + option.text;
-
-      url = window.location.href + "midi/" + option.text;
-
-      //url = "https://github.com/michaelcchu/"
-      //  + "easyplay19/raw/main/midi/"
-      //  + option.text
-  }
-
-  fetch(url)
+  fetch("https://michaelcchu.github.io/easyplay19/midi/" + option.text)
   .then( response => response.arrayBuffer())
   .then( data => {setup(data);})
   .catch( e => {console.log( e );} );
