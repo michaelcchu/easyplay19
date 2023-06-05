@@ -127,29 +127,40 @@ function start() {
     });
 }
 
-// Add Chorale options
+// Add music options
 let optgroup = document.createElement("optgroup");
-optgroup.label = "Chorales";
-for (let i = 1; i <= 371; i++) {
-    const option = document.createElement("option");
-    option.text = i; optgroup.append(option);
-}
-library.add(optgroup);
+optgroup.label = "tobis-notenarchiv-midi";
 
-library.addEventListener("change", loadMusic);
-loadMusic();
+// Retrieve text file
+//let url = "https://raw.githubusercontent.com/michaelcchu/"
+//  + "tobis-notenarchiv-midi/main/dir.txt"
+let url = "/dir.txt";
+fetch(url)
+.then( response => response.text())
+.then( data => {
+  const lines = data.split("\n");
+  for (let line of lines) {
+    const option = document.createElement("option");
+    option.text = line; optgroup.append(option);
+  }
+
+  library.add(optgroup);
+
+  library.addEventListener("change", loadMusic);
+  loadMusic();
+})
+.catch( e => {console.log( e );} );
 
 function loadMusic() {
   const option = library.options[library.selectedIndex];
-  let number = option.text;
   let optgroup = option.parentElement.label;
 
-  let url;
+  if (optgroup === "tobis-notenarchiv-midi") {
+      //url = "https://proxy.cors.sh/"
+      //  + "https://github.com/michaelcchu/"
+      //  + "tobis-notenarchiv-midi/raw/main/midi/" + option.text
 
-  if (optgroup === "Chorales") {
-      number = ("00" + number).slice(-3);
-      url = "https://kern.humdrum.org/cgi-bin/ksdata?file=chor"
-      + number + ".krn&l=users/craig/classical/bach/371chorales&format=midi";
+      url = "/midi/" + option.text;
   }
 
   fetch(url)
