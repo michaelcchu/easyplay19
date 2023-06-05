@@ -162,7 +162,12 @@ function loadMusic() {
       //  + "https://github.com/michaelcchu/"
       //  + "tobis-notenarchiv-midi/raw/main/midi/" + option.text
 
-      url = "/midi/" + option.text;
+      //url = "/midi/" + option.text;
+
+      url = "https://michaelcchu.github.io/easyplay19/midi/" + option.text;
+      //url = "https://github.com/michaelcchu/"
+      //  + "easyplay19/raw/main/midi/"
+      //  + option.text
   }
 
   fetch(url)
